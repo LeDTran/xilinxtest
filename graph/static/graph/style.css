@@ -1,12 +1,18 @@
 .button-container {
-    /*text-align: center;*/
+    margin:20px 60px;
 }
 
 .button{
+	text-decoration: none;
 	border: none;
 	padding: 10px;
+	background-color: #343434;
+	color: white;
 }
 
-.button > a{
-	text-decoration: none;
+.button:hover{
+	outline: solid 2px #343434;
+	background-color: white;
+	color: #343434;
+	border-radius: 5px;
 }

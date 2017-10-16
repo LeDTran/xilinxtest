@@ -13,8 +13,6 @@ import plotly.graph_objs as go
 
 import simplejson as json
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
 
 class Graph(TemplateView):
     template_name = 'graph.html'
@@ -45,7 +43,7 @@ class Graph(TemplateView):
 
 def ExportGraphCSV(request):
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="users.csv"'
+    response['Content-Disposition'] = 'attachment; filename="2017_Test_Scores.csv"'
 
     writer = csv.writer(response)
     writer.writerow(['Student', 'Test 1', 'Test 2', 'Test 3', 'Final'])
