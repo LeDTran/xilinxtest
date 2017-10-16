@@ -56,7 +56,14 @@
         boxpoints: 'suspectedoutliers'
     }
 
-    var data = [trace1, trace2, trace3, trace4];
+    var traceLine = {
+        x: ['Test 1','Test 2','Test 3','Final'],
+        y: [76,73,71,67],
+        type: 'scatter',
+        name: 'Mean'
+    };
+
+    var data = [trace1, trace2, trace3, trace4, traceLine];
 
     var layout = {
         title: '2017 Test Scores',
