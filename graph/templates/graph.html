@@ -1,36 +1,68 @@
 <head>
-	<!-- Plotly.js -->
-	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    {% load static %}
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'graph/style.css' %}"/>
 </head>
 <body>
-	<!-- Plotly chart will be drawn inside this DIV -->
-	{{test1_scores}}
-	<div id="myDiv"></div>
-	<script type="text/javascript">
-		var y0=[],y1=[]
-		for ( i = 0; i < 50; i ++) 
-		{
-		    y0[i] = Math.random();
-		    y1[i] = Math.random();
-		}
-		y0=JSON.parse("{{test1_scores|safe}}");
-		console.log(y0);
-		console.log(y1);
-
-
-		var trace1 = {
-		  y: y0,
-		  type: 'box'
-		};
-
-		var trace2 = {
-		  y: y1,
-		  type: 'box'
-		};
-
-		var data = [trace1, trace2];
-
-		Plotly.newPlot('myDiv', data);
-	</script>
+    <!-- Plotly chart will be drawn inside this DIV -->
+<!--     <b>Test 1:</b> {{test1}}<br/><br/>
+    <b>Test 2:</b> {{test2}}<br/><br/>
+    <b>Test 3:</b> {{test3}}<br/><br/>
+    <b>Final:</b> {{final}}<br/><br/> -->
+    <div id="graphDiv"></div>
+    <div class="button-container"> <button type="button" class="button""><a href="{% url 'ExportGraphCSV' %}">Download Data</a></button></div>
+    <br/><br/>
 </body>
+
+<script type="text/javascript">
+    var t1=[], t2=[], t3=[], t4=[];
+
+    t1=JSON.parse("{{test1|safe}}");
+    t2=JSON.parse("{{test2|safe}}");
+    t3=JSON.parse("{{test3|safe}}");
+    t4=JSON.parse("{{final|safe}}");
+
+
+    var trace1 = {
+        y: t1, 
+        name: 'Test 1',
+        type: 'box',
+        boxmean: 'sd',
+        boxpoints: 'suspectedoutliers'
+    };
+
+    var trace2 = {
+        y: t2,
+        name: 'Test 2',
+        type: 'box',
+        boxmean: 'sd',
+        boxpoints: 'suspectedoutliers'
+    };
+
+    var trace3 = {
+        y: t3,
+        name: 'Test 3',
+        type: 'box',
+        boxmean: 'sd',
+        boxpoints: 'suspectedoutliers'
+    }
+
+    var trace4 = {
+        y: t4,
+        name: 'Final',
+        type: 'box',
+        boxmean: 'sd',
+        boxpoints: 'suspectedoutliers'
+    }
+
+    var data = [trace1, trace2, trace3, trace4];
+
+    var layout = {
+        title: '2017 Test Scores',
+        boxgap: 0.75, 
+    };
+
+    Plotly.newPlot('graphDiv', data, layout);
+</script>
 

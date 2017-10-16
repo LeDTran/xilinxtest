@@ -1,0 +1,12 @@
+.button-container {
+    /*text-align: center;*/
+}
+
+.button{
+	border: none;
+	padding: 10px;
+}
+
+.button > a{
+	text-decoration: none;
+}
